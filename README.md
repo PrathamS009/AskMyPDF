@@ -1,10 +1,26 @@
-# AskMyPDF
-Assistant to ask questions on uploaded PDF's and get answers with going through all of it.
+## AskMyPDF
+A basic lightweight RAG application that lets you ask questions over the uploaded PDFs. It extracts the texts from the PDFs, embeds them using Sentence Transformers+FAISS and queries a selected LLM model on hugging face thorugh API. 
 
-Workflow
-    1. User uploads the pdf
-    2. Uploaded pdf goes to pdf_loader and text chunks are created
-    3. Chunks are used to create vector index in vector_store using embeddings from different LLM's
-    4. Rag_pipeline is used to map user's question to similar chunks available in vector_store
-    5. Chat_memory to keep chat memory
-    6. Streamlit UI helps to choose the LLM and get response
+## Project Structure:
+```
+utilities/
+ ├── pdf_loader.py      # PDF text extraction and chunking
+ ├── vector_store.py    # Embedding + FAISS index
+ └── rag_pipeline.py    # RAG logic and model inference
+requirements.txt        # For Python 3.10
+streamlit_app.py        # Streamlit frontend
+.env                    # Environment variables (HF_TOKEN)
+```
+
+## Envirnomet Setup
+Make a .env file and store your Read-Only token inside it, WITHOUT QUOTES like this:
+```
+HF_TOKEN=---your token here---
+```
+## Workflow
+1. Run the app: streamlit run streamlit_app.py
+2. Upload PDF/s
+3. Click "Build Knowledge Base"
+4. Select your model
+5. Ask your question
+6. View the answer given in the below answer field
